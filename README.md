@@ -1,0 +1,6 @@
+## Relatório de Falhas e Correções
+
+Durante o desenvolvimento deste pipeline, algumas falhas foram identificadas e corrigidas com o auxílio dos logs na aba Actions do GitHub:
+
+1. **Erro de Indentação e Steps ausentes (Invalid workflow file):** Inicialmente, o GitHub retornou um erro indicando falha ao ler o arquivo `.github/workflows/ci.yml`. Ao analisar os logs, identifiquei que o YAML estava com a indentação incorreta no bloco `on:` e o bloco `steps:` não estava declarado de forma completa. A correção foi feita ajustando estritamente os espaços do arquivo YAML e inserindo todos os comandos de setup.
+2. **Erro de Execução (Exit code 127):** Ocorreu uma falha no último passo do pipeline porque o comando do `pytest` não foi encontrado e não rodou os testes. Identifiquei que o arquivo estava com o nome fora do padrão (`teste_main.py`) e o ajustei para o padrão da ferramenta (`test_main.py`). Além disso, alterei a chamada no YAML para `python -m pytest --verbose` para garantir a execução correta no ambiente Ubuntu. Após esses ajustes, o pipeline rodou com sucesso.
