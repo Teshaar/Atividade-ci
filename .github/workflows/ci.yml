@@ -26,4 +26,4 @@ jobs:
 
     - name: Executar testes
       run: |
-        pytest --verbose
+        python -m pytest --verbose
